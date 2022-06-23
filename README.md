@@ -2,5 +2,5 @@
 
 # Catalogs for style and scripts
 
->./src/styles
->./src/scripts
+>./src/styles  
+>./src/scripts  
