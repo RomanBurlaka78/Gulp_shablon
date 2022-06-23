@@ -1,6 +1,11 @@
 # Gulp constructor
+-dowload files
+-tipe npm i
 
-# Catalogs for style and scripts
 
->./src/styles  
->./src/scripts  
+#   Create catalogs for style and scripts
+
+>./src/styles/main.less
+>./src/scripts/main.js 
+
+-tipe gulp
