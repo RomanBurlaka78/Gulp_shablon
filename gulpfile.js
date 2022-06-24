@@ -7,6 +7,7 @@ const uglify = require('gulp-uglify')
 const concat = require('gulp-concat')
 const  sourcemaps = require('gulp-sourcemaps')
 const autoprefixer = require('gulp-autoprefixer')
+const imagemin = require('gulp-imagemin')
 
 
 const del = require('del');
@@ -20,7 +21,11 @@ const paths = {
     scripts: {
         src: 'src/scripts/**/*.js',
         dest: 'dist/js/'
+    },
+    images: {
+        src: 'src/images/*'
     }
+
 }
 
 function clean() {
@@ -62,6 +67,12 @@ function scripts() {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.dest))
 
+}
+
+function img()  {
+   return gulp.src('')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
 }
 
 function watch() {
