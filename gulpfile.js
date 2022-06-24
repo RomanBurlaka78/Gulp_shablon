@@ -5,6 +5,8 @@ const cleanCSS = require('gulp-clean-css')
 const babel = require('gulp-babel')
 const uglify = require('gulp-uglify')
 const concat = require('gulp-concat')
+const  sourcemaps = require('gulp-sourcemaps')
+const autoprefixer = require('gulp-autoprefixer')
 
 
 const del = require('del');
@@ -28,28 +30,36 @@ function clean() {
 function styles() {
     //search files
     return gulp.src(paths.styles.src)
+    .pipe(sourcemaps.init())
     //compilation to css
     .pipe(less())
+    .pipe(autoprefixer({
+        cascade: false
+    }))
     //clean css
-    .pipe(cleanCSS())
+    .pipe(cleanCSS( {
+        level:2
+    }))
     //rename files
     .pipe(rename({
         basename: 'main',
         suffix: '.min'
     }))
+    .pipe(sourcemaps.write('.'))
     //folder destination
     .pipe(gulp.dest(paths.styles.dest))
 }
 
 
 function scripts() {
-    return gulp.src(paths.scripts.src, {
-        sourcemaps: true
-
-    })
-    .pipe(babel())
+    return gulp.src(paths.scripts.src)
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+        presets: ['@babel/env']
+    }))
     .pipe(uglify())
     .pipe(concat('main.min.js'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(paths.scripts.dest))
 
 }
